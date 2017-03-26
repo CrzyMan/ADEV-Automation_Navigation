@@ -10,10 +10,6 @@
 #include "Demo.h"
 #include "Nav.h"
 
-// Establish globals in this scope
-//int data[360];
-float goals[2] = {0, 0};
-
 // Set the MovementModel to be filled later
 MovementModel *m;
 
