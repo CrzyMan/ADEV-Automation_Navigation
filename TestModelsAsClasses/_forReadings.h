@@ -60,4 +60,10 @@ const int mock_blind[]          = {   0,    0,    0,    0,    0,    0,    0,    
 const int mock_blindToTheRight[]= {   0,    0,    0,    0,    0,    0,  784,  450,    0};
 /** End Mock Data **/
 
+// The goals
+float goals[2] = {0, 0};
+// Indices for the goals array
+const char _goals_turningSpeed = 0;
+const char _goals_forwardSpeed = 1;
+
 #endif // _FORREADINGSH
