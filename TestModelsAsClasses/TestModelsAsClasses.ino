@@ -57,7 +57,15 @@ void setup(){
 }
 
 void loop(){
+  // Update the lidar data
 //	updateLIDARData();
+
+// decide which movement module to use
+//  updateMovementLogic()
+
+// Run the movement module
 //  m->execute(goals);
+
+// Interprets goals and sends commands to motors
 //  controlMotors();
 }
