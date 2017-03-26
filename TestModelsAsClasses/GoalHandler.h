@@ -12,7 +12,7 @@ namespace GoalHandler {
   const int right = 1;
   const int straight = 0;
 
-  float goals[2] = {0, 0};
+  
 
   // Indices for the biases array
   const char _biases_lateral = 0;
@@ -41,10 +41,6 @@ namespace GoalHandler {
   // All goals are in mm
   // readingGoals = [_fuzzy_sideBack, _fuzzy_side, _fuzzy_sideFront, _fuzzy_frontSide, _fuzzy_front]
   int fuzzyGoals[_fuzzy_size] = {587, 450, 784, 0, 800};
-
-  // Indices for the goals array
-  const char _goals_turningSpeed = 0;
-  const char _goals_forwardSpeed = 1;
   
   // Returns the balanced Logistic function of x, given a k value
   // Balanced, in this sense, means that the y-intercept is the origin 
