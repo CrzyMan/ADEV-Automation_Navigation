@@ -3,7 +3,7 @@
 
 #include "MovementModel.h"
 #include "_forReadings.h"
-#include "Protocol.h"
+#include "GoalHandler.h"
 
 class Nav : public MovementModel{
     public:
@@ -12,7 +12,7 @@ class Nav : public MovementModel{
         void updateGoals(float goals[2]);
 };
 void Nav::execute(float goals[2]){
-    int dir = Protocol::left;
+    int dir = GoalHandler::left;
     this->updateGoals(goals);
 };
 void Nav::updateGoals(float goals[2]){

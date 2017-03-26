@@ -22,15 +22,20 @@ Demo d(data);
 Nav n(data);
 
 void setup(){
+  Serial.begin( 115200 );
+  
   data[0] = 4;
   data[1] = 5;
   data[2] = 6;
+
+  char str[20];
+  sprintf(str, "Before: %d, %d", (int)goals[0], (int)goals[1]);
+  Serial.println(str);
   
   // Make the movement model the demo model
   m = &d;
   m->execute(goals);
-  char str[20];
-  sprintf(str, "Demo 1: %1.f, %1.f", goals[0], goals[1]);
+  sprintf(str, "Demo 1: %d, %d", (int)goals[0], (int)goals[1]);
   Serial.println(str);
   
 
@@ -40,19 +45,19 @@ void setup(){
   // Make the movement model the nav model
   m = &n;
   m->execute(goals); // this makes data[0]=1
-  sprintf(str, "Nav  1: %1.f, %1.f", goals[0], goals[1]);
+  sprintf(str, "Nav  1: %d, %d", (int)goals[0], (int)goals[1]);
   Serial.println(str);
 
   // Switch it back to the demo model
   m = &d;
   m->execute(goals);
-  sprintf(str, "Demo 2: %1.f, %1.f", goals[0], goals[1]);
+  sprintf(str, "Demo 2: %d, %d", (int)goals[0], (int)goals[1]);
   Serial.println(str);
 
 }
 
 void loop(){
-	updateLIDARData();
-  m->execute(goals);
-  controlMotors();
+//	updateLIDARData();
+//  m->execute(goals);
+//  controlMotors();
 }

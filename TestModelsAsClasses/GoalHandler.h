@@ -20,5 +20,5 @@ namespace GoalHandler {
   void setDirection(int newDir){
     currDir = newDir;
   }
-  
 }
+#endif
