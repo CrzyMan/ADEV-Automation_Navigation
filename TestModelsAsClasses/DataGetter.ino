@@ -46,6 +46,10 @@ void updateLIDARData(){
     // Shouldn't ever be called because we wait in the setup
     Serial.println("Not ready");
   }
+
+
+  // Turns the data into readings so we don't have to worry about it being up to date
+  dataToReadings();
 }
 
 // Load the angle and distance into the data based on packet
