@@ -8,14 +8,16 @@
 
 // Include all of the used movement model types
 #include "GoHome.h"
-#include "Nav.h"
+#include "Picking.h"
+//#include "Idle.h"
 
 // Set the MovementModel to be filled later
 MovementModel *m;
 
 // Produce the types of MovementModels we want to use
 GoHome g(data);
-Nav n(data);
+Picking p(data);
+//Idle i();
 
 void setup(){
   Serial.begin( 115200 );
@@ -29,20 +31,23 @@ void setup(){
   Serial.println(str);
   
   // Make the movement model the demo model
-  m = &g;
+  m = &p;
   m->execute(goals);
 
 }
 
 void loop(){
-  // Update the lidar data
+// Update the lidar data
 //	updateLIDARData();
 
 // decide which movement module to use
-//  updateMovementLogic()
+//  updateMovementLogic();
+    // Called inside updateMovementLogic();
+    // Update flags caused by environment
+    // updateEnvironmentFlags();
 
 // Run the movement module
-//  m->execute(goals);
+//  m->execute();
 
 // Interprets goals and sends commands to motors
 //  controlMotors();

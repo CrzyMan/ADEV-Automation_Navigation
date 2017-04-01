@@ -144,3 +144,9 @@ void loadMockData(const int mock[_readings_size]){
     data[angleArray[i]] = mock[i];
   }
 }
+
+
+// Looks at the environment (basket, )
+void updateEnvironmentFlags(){
+
+}

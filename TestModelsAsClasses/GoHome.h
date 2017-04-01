@@ -47,7 +47,7 @@ void GoHome::outOfRow() {
 }
 
 void GoHome::inRow() {
-  if(readings[_readings_rightSideFront] <= 2000 && readings[_readings_leftSideFront] <= 2000){
+  if(robotInRow(){
     if(GoalHandler::currDir != GoalHandler::straight){
       Turning::toggleNext();
     }
