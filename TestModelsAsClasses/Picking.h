@@ -13,7 +13,7 @@ class Picking : public MovementModel {
   public:
     Picking(int *d): MovementModel(d) {};
     void execute(float goals[2]);
-    void straight(void);
+    void goingStraight(void);
     void turning(void);
 };
 
@@ -38,7 +38,7 @@ void Picking::goingStraight(){
 
   //If not in a row
   //  switch state to turning
-  if (!robotInRow()) currState = State::turning;
+  if (!robotInRow()) currState = State::TURNING;
 
 };
 
@@ -51,7 +51,7 @@ void Picking::turning(){
   //  switch state to going straight
   if (robotInRow()){
     Turning::toggleNext();
-    currState = State::straight;
+    currState = State::STRAIGHT;
   }
 
 };
