@@ -47,7 +47,7 @@ void GoHome::outOfRow() {
 }
 
 void GoHome::inRow() {
-  if(robotInRow(){
+  if(robotInRow()){
     if(GoalHandler::currDir != GoalHandler::straight){
       Turning::toggleNext();
     }
