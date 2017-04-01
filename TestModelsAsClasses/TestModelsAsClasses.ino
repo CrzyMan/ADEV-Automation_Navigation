@@ -15,8 +15,8 @@
 MovementModel *m;
 
 // Produce the types of MovementModels we want to use
-GoHome g(data);
-Picking p(data);
+GoHome g;
+Picking p;
 //Idle i();
 
 void setup(){
@@ -32,7 +32,7 @@ void setup(){
   
   // Make the movement model the demo model
   m = &p;
-  m->execute(goals);
+  m->execute();
 
 }
 

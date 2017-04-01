@@ -2,15 +2,8 @@
 #define MOVEMENTMODEL_H
 
 class MovementModel {
-    protected:
-      int *data;
-
     public:
-        MovementModel(int *arr){
-            data = arr;
-        }
-
-      virtual void execute(float goals[2]){};
+      virtual void execute(){};
 };
 
 #endif //MOVEMENTMODEL_H

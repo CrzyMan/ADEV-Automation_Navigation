@@ -11,13 +11,12 @@ class Picking : public MovementModel {
     enum State {TURNING, STRAIGHT};
     State currState = State::STRAIGHT;
   public:
-    Picking(int *d): MovementModel(d) {};
-    void execute(float goals[2]);
+    void execute();
     void goingStraight(void);
     void turning(void);
 };
 
-void Picking::execute(float goals[2]) {
+void Picking::execute() {
   switch (currState) {
     case State::STRAIGHT:
       goingStraight();
