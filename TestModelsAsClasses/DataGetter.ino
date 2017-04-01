@@ -148,5 +148,9 @@ void loadMockData(const int mock[_readings_size]){
 
 // Looks at the environment (basket, )
 void updateEnvironmentFlags(){
+  //First, clear all flags
+  FlagProtocol::clearAllFlags();
 
+  //Get new flags
+  
 }
