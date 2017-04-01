@@ -3,13 +3,15 @@
 // Get the common stuff
 #include "Common.h"
 
+
+/** Includes for Movement Logic **/
 // Include the MovementModel abstract class
 #include "MovementModule.h"
 
 // Include all of the used movement model types
 #include "GoHome.h"
 #include "Picking.h"
-//#include "Idle.h"
+#include "Idle.h"
 
 // Set the MovementModel to be filled later
 MovementModule *m;
@@ -17,36 +19,32 @@ MovementModule *m;
 // Produce the types of MovementModels we want to use
 GoHome g;
 Picking p;
-//Idle i();
+Idle i;
+/** End Movement Logic **/
+
 
 void setup(){
   Serial.begin( 115200 );
+  //While not ready, do nothing
   
-  data[0] = 4;
-  data[1] = 5;
-  data[2] = 6;
-
-  char str[20];
-  sprintf(str, "Before: %d, %d", (int)goals[0], (int)goals[1]);
-  Serial.println(str);
-  
-  // Make the movement model the demo model
-  m = &p;
-  m->execute();
-
+  //Set default movement module to idle
+  m = &i;
+  runModule();
+  controlMotors();
 }
 
 void loop(){
 // Update the lidar data
-//	updateLIDARData();
+  updateLIDARData();
 
 // decide which movement module to use
-//  updateMovementLogic();
+  pickModule();
     // Called inside updateMovementLogic();
     // Update flags caused by environment
     // updateEnvironmentFlags();
 
 // Run the movement module
+  runModule();
 //  m->execute();
 
 // Interprets goals and sends commands to motors

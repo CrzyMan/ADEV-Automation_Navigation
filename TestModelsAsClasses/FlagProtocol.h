@@ -2,15 +2,13 @@
 #define FLAGPROTOCOL_H
 
 namespace FlagProtocol {
-  const char flag_flagsActive = 0;
-  const char flag_basketFull = 1;
-  const char flag_startPicking = 2;
-
+  //Create flag names, up to 32 because of 32 bits in an Integer
+  enum FlagNames { flagsActive, basketFull, batteryLow, armBusy, goHomeRequest, batteryDead, obstacleWhileTurning };
   int flags = 0;
   
   void setFlag(int flag){
     bitSet(flags, flag);
-    bitSet(flags, flag_activeFlag);
+    bitSet(flags, FlagNames::flagsActive);
   };
   
   bool getFlag(int flag){
