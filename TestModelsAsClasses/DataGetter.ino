@@ -1,4 +1,3 @@
-#include "Common.h"
 // Get the raw data from the USB connection
 void updateLIDARData(){
   //Usb.Task();
@@ -47,8 +46,6 @@ void updateLIDARData(){
     Serial.println("Not ready");
   }
 
-
-  // Turns the data into readings so we don't have to worry about it being up to date
   dataToReadings();
 }
 

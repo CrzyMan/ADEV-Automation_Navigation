@@ -18,6 +18,7 @@ class GoHome : public MovementModel {
     void execute(float goals[2]);
     void outOfRow(void);
     void inRow(void);
+    void turnToHome(void);
 };
 void GoHome::execute(float goals[2]) {
   switch (currState) {
@@ -36,7 +37,7 @@ void GoHome::execute(float goals[2]) {
 void GoHome::outOfRow() {
   counter++;
   if (counter > threshold) {
-    GoalHandler::setDirection(_turning_next);
+    GoalHandler::setDirection(Turning::next);
   } else {
     GoalHandler::setDirection(GoalHandler::straight);
   }
@@ -46,17 +47,17 @@ void GoHome::outOfRow() {
 }
 
 void GoHome::inRow() {
-  if(readings[_readings_frontSideRight] <= 2000 && readings[_readings_frontSideLeft] <= 2000]){
+  if(readings[_readings_rightSideFront] <= 2000 && readings[_readings_leftSideFront] <= 2000){
     if(GoalHandler::currDir != GoalHandler::straight){
-      _forTurning::toggleTurn();
+      Turning::toggleNext();
     }
     GoalHandler::setDirection(GoalHandler::straight);
   }else{
-    if(_forTurning::_turning_next != _forTurning::_turning_initial){
-      GoalHandler::setDirection(_forTurning::_turning_initial);
+    if(Turning::next != Turning::initial){
+      GoalHandler::setDirection(Turning::initial);
       currState = TURNTOHOME;
     }else{
-      GoalHandler::setDirection(_forTurning::_turning_next);
+      GoalHandler::setDirection(Turning::next);
     }
   }
   /*check readings to see if at end of row
@@ -77,12 +78,13 @@ void GoHome::turnToHome() {
   int reads = 0;
   switch (GoalHandler::currDir) {
     case GoalHandler::right:
-      reads = readings[_readings_frontSideRight];
+      reads = readings[_readings_rightSideFront];
       break;
-    case GoalHandle::left:
-      reads = readings[_readings_frontSideLeft];
+    case GoalHandler::left:
+      reads = readings[_readings_leftSideFront];
       break;
     default:
+      break;
   }
   if (reads > 1000 && reads < 2500) {
     currState = OUTOFROW;
