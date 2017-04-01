@@ -1,9 +1,9 @@
 #ifndef DEMO_H
 #define DEMO_H
 
-#include "MovementModel.h"
+#include "MovementModule.h"
 
-class Demo : public MovementModel{
+class Demo : public MovementModule{
   public:
     void execute();
 };

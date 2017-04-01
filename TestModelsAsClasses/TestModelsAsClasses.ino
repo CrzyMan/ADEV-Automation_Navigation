@@ -4,7 +4,7 @@
 #include "Common.h"
 
 // Include the MovementModel abstract class
-#include "MovementModel.h"
+#include "MovementModule.h"
 
 // Include all of the used movement model types
 #include "GoHome.h"
@@ -12,7 +12,7 @@
 //#include "Idle.h"
 
 // Set the MovementModel to be filled later
-MovementModel *m;
+MovementModule *m;
 
 // Produce the types of MovementModels we want to use
 GoHome g;

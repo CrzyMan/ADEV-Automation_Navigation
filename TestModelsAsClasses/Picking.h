@@ -1,12 +1,12 @@
 #ifndef PICKING_H
 #define PICKING_H
 
-#include "MovementModel.h"
+#include "MovementModule.h"
 #include "_forReadings.h"
 #include "_forTurning.h"
 #include "GoalHandler.h"
 
-class Picking : public MovementModel {
+class Picking : public MovementModule {
   private:
     enum State {TURNING, STRAIGHT};
     State currState = State::STRAIGHT;

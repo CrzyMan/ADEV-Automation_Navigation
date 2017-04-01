@@ -1,12 +1,12 @@
 #ifndef GO_HOME_H
 #define GO_HOME_H
 
-#include "MovementModel.h"
+#include "MovementModule.h"
 #include "_forReadings.h"
 #include "_forTurning.h"
 #include "GoalHandler.h"
 
-class GoHome : public MovementModel {
+class GoHome : public MovementModule {
   private:
     int counter = 0;
     enum State {INROW, OUTOFROW, TURNTOHOME};
