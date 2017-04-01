@@ -4,10 +4,10 @@
 #include "GoalHandler.h"
 
 namespace Turning{
-  //ints for turning
+  // int for turning
   int initial = GoalHandler::left;;
 
-  //define turn at end of current row
+  // define turn at end of current row
   int next = Turning::initial;;
 
   /** Toggles the next turn between left (-1) and right (1)
