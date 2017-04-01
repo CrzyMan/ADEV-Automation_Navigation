@@ -66,4 +66,11 @@ float goals[2] = {0, 0};
 const char _goals_turningSpeed = 0;
 const char _goals_forwardSpeed = 1;
 
+const int inRowThreshold = 2000;
+// Returns whether or not the robot is in a row
+bool robotInRow(){
+  return (readings[_readings_rightSideFront] <= inRowThreshold &&
+          readings[_readings_leftSideFront ] <= inRowThreshold);
+}
+
 #endif // _FORREADINGSH
