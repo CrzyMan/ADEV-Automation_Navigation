@@ -1,12 +1,12 @@
 #ifndef GO_HOME_H
 #define GO_HOME_H
 
-#include "MovementModel.h"
+#include "MovementModule.h"
 #include "_forReadings.h"
 #include "_forTurning.h"
 #include "GoalHandler.h"
 
-class GoHome : public MovementModel {
+class GoHome : public MovementModule {
   private:
     int counter = 0;
     enum State {INROW, OUTOFROW, TURNTOHOME};
@@ -14,13 +14,12 @@ class GoHome : public MovementModel {
     const int upperLimit = 1000;
     const int threshold = upperLimit * 9 / 10;
   public:
-    GoHome(int *d): MovementModel(d) {};
-    void execute(float goals[2]);
+    void execute();
     void outOfRow(void);
     void inRow(void);
     void turnToHome(void);
 };
-void GoHome::execute(float goals[2]) {
+void GoHome::execute() {
   switch (currState) {
     case INROW:
       inRow();

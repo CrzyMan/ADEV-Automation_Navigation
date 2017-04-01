@@ -1,23 +1,22 @@
 #ifndef PICKING_H
 #define PICKING_H
 
-#include "MovementModel.h"
+#include "MovementModule.h"
 #include "_forReadings.h"
 #include "_forTurning.h"
 #include "GoalHandler.h"
 
-class Picking : public MovementModel {
+class Picking : public MovementModule {
   private:
     enum State {TURNING, STRAIGHT};
     State currState = State::STRAIGHT;
   public:
-    Picking(int *d): MovementModel(d) {};
-    void execute(float goals[2]);
+    void execute();
     void goingStraight(void);
     void turning(void);
 };
 
-void Picking::execute(float goals[2]) {
+void Picking::execute() {
   switch (currState) {
     case State::STRAIGHT:
       goingStraight();

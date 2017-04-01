@@ -4,7 +4,7 @@
 #include "Common.h"
 
 // Include the MovementModel abstract class
-#include "MovementModel.h"
+#include "MovementModule.h"
 
 // Include all of the used movement model types
 #include "GoHome.h"
@@ -12,11 +12,11 @@
 //#include "Idle.h"
 
 // Set the MovementModel to be filled later
-MovementModel *m;
+MovementModule *m;
 
 // Produce the types of MovementModels we want to use
-GoHome g(data);
-Picking p(data);
+GoHome g;
+Picking p;
 //Idle i();
 
 void setup(){
@@ -32,7 +32,7 @@ void setup(){
   
   // Make the movement model the demo model
   m = &p;
-  m->execute(goals);
+  m->execute();
 
 }
 
