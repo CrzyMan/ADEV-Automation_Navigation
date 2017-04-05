@@ -20,4 +20,4 @@ namespace FlagProtocol {
   };
 };
 
-#endif FLAGPROTOCOL_H
+#endif // FLAGPROTOCOL_H

@@ -154,3 +154,29 @@ void updateEnvironmentFlags(){
   //Get new flags
   
 }
+
+void USBSetup(){
+  if (Usb.Init() == -1)
+      Serial.println("OSCOKIRQ failed to assert");
+
+  // Wait for USB to be ready
+  while(!Acm.isReady()){
+    Usb.Task();
+  }
+  Serial.println("USB is ready");
+
+  // Wait for the Acm and Usb to start collecting data well, experimentally takes at least 2 seconds
+  delay( 2000 );
+  
+  Serial.println("Preloading LIDAR data...");
+  for (int i = 0; i < 5000; i++) // added some more chunks to ensure full rotation
+    updateLIDARData();
+  
+  for (int i = 0; i < 360; i++){
+    Serial.print(i);
+    Serial.print(", ");
+    Serial.print(data[i]);
+    Serial.print("\n");
+  }
+}
+
