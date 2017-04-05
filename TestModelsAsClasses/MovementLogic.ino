@@ -29,6 +29,7 @@ void pickModule(){
 }
 
 void runModule(){
+  GoalHandler::updateGoals();
   m->execute();
 }
 

@@ -25,3 +25,13 @@ void sendMotorCommands(int leftCommand, int rightCommand){
     Serial.println(rightCommand);
   }
 }
+
+void motorSetup(){
+  // Left motor output through pin 2
+  leftMotor.attach(2);
+
+  // Right motor output through pin 8
+  rightMotor.attach(8);
+
+  sendMotorCommands(MOTOR_STOP, MOTOR_STOP);
+}
