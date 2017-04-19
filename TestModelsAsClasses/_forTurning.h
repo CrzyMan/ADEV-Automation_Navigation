@@ -5,7 +5,7 @@
 
 namespace Turning{
   // int for turning
-  int initial = GoalHandler::left;;
+  int initial = GoalHandler::right;;
 
   // define turn at end of current row
   int next = Turning::initial;;

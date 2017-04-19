@@ -29,7 +29,11 @@ void pickModule(){
 }
 
 void runModule(){
+  // Runs for the most recently selected direction
   GoalHandler::updateGoals();
+
+  // Gives the module the opportunity to directly edit the goals (idle/demo)
+  // Otherwise, timescale is so small, the output will seem to happen at the same time as the decision, even though it is an iteration behind
   m->execute();
 }
 
