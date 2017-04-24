@@ -121,9 +121,8 @@ void dataToReadings(){
       val = data[angleArray[i] + j];
 
       // Adjust for when distance is beyond range (val = 0)
-      // If val == 0, then set it to 4000, otherwise keep it the same
-      // 4000 was chosen because it is just outside of the sensing range of the LIDAR
-      val = (val == 0) ? 4000 : val;
+      // If val == 0, then set it to _readings_max, otherwise keep it the same
+      val = (val == 0) ? _readings_max : val;
 
       // get the distance at angleArray[i] + j
       avg += val;

@@ -43,10 +43,10 @@ int data[360];
 // 012345678901
 const int packet_maxSize = 12;
 char packet[packet_maxSize];
-uint8_t packet_writeIndex = 0;
+char packet_writeIndex = 0;
 
 /** Mock Data **/
-//                       angles = {130 , 90  , 35  , 12  , 0   , 348 , 325 , 270 , 230 }
+//                       angles = { 130,   90,   35,   12,    0,  348,  325,  270,  230}
 const int mock_middleLeft[]     = {   0, 1506, 1677, 2403,    0,    0,    0, 1578, 1561};
 const int mock_middleStraight[] = {1815, 1411, 2326,    0,    0,    0, 2409, 1478, 1882};
 const int mock_middleRight[]    = {1455, 1545,    0,    0,    0, 2347, 1669, 1634, 1031};
