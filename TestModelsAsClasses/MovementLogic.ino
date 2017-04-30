@@ -22,10 +22,8 @@ void pickModule(){
           FlagProtocol::getFlag(FlagProtocol::FlagNames::goHomeRequest)){
           m = &g;
        }
+       // Add additional else if statements if other states arise.
   }
-  
-  // Make the movement model the demo model
-  // m = &p;
 }
 
 void runModule(){
