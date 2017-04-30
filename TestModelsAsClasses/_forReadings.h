@@ -32,7 +32,7 @@ const int angleArray[_readings_size] = {
 // that are averaged with the angle
 // 0 - Only the angle is used
 // 1 - One degree on each side is averaged with the angle
-const char _readings_spread = 0;
+const char _readings_spread = 2;
 const int  _readings_max = 3000;
 
 // Contains distance data for each angle (0-359, which is 360 elements)
