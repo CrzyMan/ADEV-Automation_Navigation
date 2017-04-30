@@ -52,10 +52,8 @@ void updateLIDARData(){
 // Load the angle and distance into the data based on packet
 // Only called when a packet is formed properly
 void loadPacketToData(){
-//  for (int i = 0; i < packet_maxSize; i++){
-//    Serial.print(packet[i]);
-//  }
-//  Serial.print("\n");
+  // Transmit packet to Matlab on computer
+  // Serial.println(packet);
 
   // guaranteed packet format: A,angle,dist,Z
   // Packet is guaranteed to be 12 characters: "A,###,####,Z"
@@ -70,10 +68,6 @@ void loadPacketToData(){
   packetBuf[3] = packet[4];
   // Get the angle int
   int angle_int = atoi(packetBuf);
-//  for (int i = 0; i < 5; i++){
-//    Serial.print(packetBuf[i]);
-//  }
-//  Serial.print("\n");
   
   // Put the distance into the buffer: ####
   // This overwrites ALL bytes written for angle
@@ -84,10 +78,6 @@ void loadPacketToData(){
   packetBuf[3] = packet[9];
   // Get the distance int
   int dist_int = atoi(packetBuf); // mm
-//  for (int i = 0; i < 5; i++){
-//    Serial.print(packetBuf[i]);
-//  }
-//  Serial.print("\n\n");
   
   // If the distance is a zero, it is out of range, so treat it as though it is the maximum reading
   dist_int = dist_int == 0 ? _readings_max : dist_int;
@@ -108,32 +98,33 @@ void loadPacketToData(){
 // Turn the raw data into readings
 void dataToReadings(){
   
-  float avg;
-  char i;
-  char j;
-  int val;
+  float avg = 0;
+  char i = 0, j = 0;
+  int val = 0, a = 0;
   // for each angle
   for (i = 0; i < _readings_size; i++){
     avg = 0;
     // across the spread
     for (j = -_readings_spread; j <= _readings_spread; j++){
+      // Get the angle and wrap around
+      a = (angleArray[i] + j + 360) % 360;
+      
       // Get the distance value at this angle
-      val = data[angleArray[i] + j];
+      val = data[a];
 
       // Adjust for when distance is beyond range (val = 0)
-      // If val == 0, then set it to 4000, otherwise keep it the same
-      // 4000 was chosen because it is just outside of the sensing range of the LIDAR
-      val = (val == 0) ? 4000 : val;
+      // If val == 0, then set it to _readings_max, otherwise keep it the same
+      val = (val == 0) ? _readings_max : val;
 
       // get the distance at angleArray[i] + j
-      avg += val;
+      avg += (float) val;
     }
 
     // average the distances
-    avg = avg / (1 + 2*_readings_spread);
+    avg = avg / (1.0 + 2.0*_readings_spread);
 
     // set the reading to be the average
-    readings[i] = avg;
+    readings[i] = (int) avg;
   } 
 }
 
@@ -171,12 +162,7 @@ void USBSetup(){
   Serial.println("Preloading LIDAR data...");
   for (int i = 0; i < 5000; i++) // added some more chunks to ensure full rotation
     updateLIDARData();
-  
-  for (int i = 0; i < 360; i++){
-    Serial.print(i);
-    Serial.print(", ");
-    Serial.print(data[i]);
-    Serial.print("\n");
-  }
+
+  Serial.println("Done loading");
 }
 
