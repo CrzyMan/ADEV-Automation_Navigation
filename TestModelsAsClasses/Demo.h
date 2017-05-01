@@ -5,6 +5,7 @@
 #include "MovementModule.h"
 
 // Make the demo class to be instantiated later
+// Extends Movement Module
 class Demo : public MovementModule{
   public:
     void execute();
