@@ -1,17 +1,24 @@
 #ifndef _FORUSBH
 #define _FORUSBH
 
+/**
+ * DISCLAIMER:
+ * This code was not initially writen or majorly editted by the Rose-Hulman 2016-2017 ADEV Automation Navigation team
+ * The code was supplied by an open source project
+ */
+
 // Libraries for the USB
 #include <cdcacm.h>
 #include <usbhub.h>
 
-/*** Begin USB stuff ***/
+// Class used by the USB
 class ACMAsyncOper : public CDCAsyncOper
 {
 public:
     uint8_t OnInit(ACM *pacm);
 };
 
+// Setting the initializer for the helper class
 uint8_t ACMAsyncOper::OnInit(ACM *pacm)
 {
     uint8_t rcode;
@@ -38,10 +45,14 @@ uint8_t ACMAsyncOper::OnInit(ACM *pacm)
     return rcode;
 }
 
+// The USB used to get information for the LIDAR system
 USB     Usb;
-//USBHub     Hub(&Usb);
+
+// Helper class
 ACMAsyncOper  AsyncOper;
+
+// ACM is basically the communication protocol for the USB
+// It is who we ask to get the information from
 ACM           Acm(&Usb, &AsyncOper);
-/*** End USB ***/
 
 #endif // _FORUSBH
