@@ -1,17 +1,20 @@
 #ifndef _FORTURNING_H
 #define _FORTURNING_H
 
+// Provides access to turn directions
 #include "GoalHandler.h"
 
 namespace Turning{
-  // int for turning
+  // The first turn will be to the right, by default
+  // This is not a constant so it can be changed during setup
   int initial = GoalHandler::right;;
 
-  // define turn at end of current row
+  // The turn that will be made the next time the robot reaches the end of a row
   int next = Turning::initial;;
 
-  /** Toggles the next turn between left (-1) and right (1)
-      If the next turn is set to straight (0), then it will stay straight
+  /* 
+   *  Toggles the next turn between left (-1) and right (1)
+   *  If the next turn is set to straight (0), then it will stay straight
   */
   void toggleNext(){
     // Because left is -1 and right is 1, we can negate the turn to toggle between the two.
