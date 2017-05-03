@@ -26,6 +26,9 @@ void pickModule(){
   }
 }
 
+/*
+ * Updates goals and calls the current movement module's execute() function
+ */
 void runModule(){
   // Runs for the most recently selected direction
   GoalHandler::updateGoals();
