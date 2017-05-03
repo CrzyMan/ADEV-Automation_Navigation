@@ -13,6 +13,7 @@ namespace Turning{
   // The turn that will be made the next time the robot reaches the end of a row
   int next = Turning::initial;
 
+
   // Variable to track number of rows picked
   int rows_picked = 0;
 
