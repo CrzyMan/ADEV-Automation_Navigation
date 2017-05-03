@@ -8,8 +8,8 @@
 
 class Picking : public MovementModule {
   private:
-    enum State {TURNING, STRAIGHT};
-    State currState = State::STRAIGHT;
+    enum State {TURNING, STRAIGHT}; // Instantiate the different states within picking
+    State currState = State::STRAIGHT;  // Set default state to straight
   public:
     void execute();
     void goingStraight(void);
@@ -19,40 +19,37 @@ class Picking : public MovementModule {
 void Picking::execute() {
   switch (currState) {
     case State::STRAIGHT:
-      goingStraight();
+      goingStraight();  // Enact the goStraight behavior
       break;
 
    case State::TURNING:
-      turning();
+      turning();  // Enact the turning behavior
       break;
-
     default:
+      // Do nothing
         break;
   }
 };
 
+// GoingStraight behavior
 void Picking::goingStraight(){
   //Go straight
   GoalHandler::setDirection(GoalHandler::straight);
 
-  //If not in a row
-  //  switch state to turning
+  //If not in a row, switch state to turning
   if (!robotInRow()) currState = State::TURNING;
-
 };
 
+// Turning behavior
 void Picking::turning(){
   //Turn in the next direction
   GoalHandler::setDirection(Turning::next);
-
-  //If in a row
-  //  toggle next turning
-  //  switch state to going straight
+  //If in a row, toggle next turning, switch state to going straight
   if (robotInRow()){
     Turning::toggleNext();
+    Turning::rows_picked += 1;
     currState = State::STRAIGHT;
   }
-
 };
 
 #endif // PICKING_H

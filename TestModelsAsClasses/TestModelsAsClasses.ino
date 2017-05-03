@@ -1,6 +1,6 @@
 // Can test everything on http://cpp.sh/
 
-// Get the common stuff
+// Get everything included in Common.h
 #include "Common.h"
 
 
@@ -28,6 +28,7 @@ Demo d;
 void setup(){
   // Setup Serial
   Serial.begin( 115200 );
+  
   //While not ready, do nothing
 
   // Setup motors
