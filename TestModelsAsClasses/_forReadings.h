@@ -16,6 +16,7 @@ const char _readings_size = 9;
 // All data is in mm
 int readings[_readings_size];
 
+// Angle of each reading
 const int angleArray[_readings_size] = {
   130,  // left side back
   90,   // left side
@@ -60,14 +61,18 @@ const int mock_blind[]          = {   0,    0,    0,    0,    0,    0,    0,    
 const int mock_blindToTheRight[]= {   0,    0,    0,    0,    0,    0,  784,  450,    0};
 /** End Mock Data **/
 
-// The goals
+// Array of length 2 to hold turning speed and forward speed goals
 float goals[2] = {0, 0};
 // Indices for the goals array
 const char _goals_turningSpeed = 0;
 const char _goals_forwardSpeed = 1;
 
+// Threshold for readings when in a row
 const int inRowThreshold = 2000;
-// Returns whether or not the robot is in a row
+
+/*
+ * Returns whether or not the robot is in a row
+ */
 bool robotInRow(){
   return (readings[_readings_rightSideFront] <= inRowThreshold &&
           readings[_readings_leftSideFront ] <= inRowThreshold);
