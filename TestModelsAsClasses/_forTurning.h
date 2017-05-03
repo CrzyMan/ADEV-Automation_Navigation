@@ -15,6 +15,7 @@ namespace Turning{
 
   // Variable to track number of rows picked
   int rows_picked = 0;
+
   /* 
    *  Toggles the next turn between left (-1) and right (1)
    *  If the next turn is set to straight (0), then it will stay straight
