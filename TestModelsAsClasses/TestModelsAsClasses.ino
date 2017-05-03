@@ -24,37 +24,40 @@ Idle i;
 Demo d;
 /** End Movement Logic **/
 
-
+/*
+ * Called once at the very beginning, used to set up everything (Serial, motors and USB).
+ */
 void setup(){
   // Setup Serial
   Serial.begin( 115200 );
   
-  //While not ready, do nothing
+  // Can wait at this point for GUI input
 
   // Setup motors
   motorSetup();
 
-  // Setup USB
-  USBSetup();
-
-  // Wait to start for some reason
-  //while (Pin low or something){}
-  
-  //Set default movement module to idle
+  // Set default movement module to idle
   m = &i;
+  // Insure robot does not move on start up
   runModule();
   controlMotors();
+  
+  // Setup USB
+  // This takes time to perform which is why we first insured the robot won't move
+  USBSetup();
 }
 
-void loop(){
+/*
+ * Called by a infinite loop. Updates LIDAR data, picks the movement module
+ * to use, runs that module, and controls the motors as appropriate.
+ */
+ void loop(){
   // Update the lidar data
   updateLIDARData();
   
   // decide which movement module to use
   pickModule();
     // Called inside updateMovementLogic();
-    // Update flags caused by environment
-    // updateEnvironmentFlags();
   
   // Run the movement module
   runModule();
