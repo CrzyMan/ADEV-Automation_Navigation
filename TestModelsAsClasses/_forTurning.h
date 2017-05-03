@@ -7,11 +7,14 @@
 namespace Turning{
   // The first turn will be to the right, by default
   // This is not a constant so it can be changed during setup
-  int initial = GoalHandler::right;;
+
+  int initial = GoalHandler::right;
 
   // The turn that will be made the next time the robot reaches the end of a row
-  int next = Turning::initial;;
+  int next = Turning::initial;
 
+  // Variable to track number of rows picked
+  int rows_picked = 0;
   /* 
    *  Toggles the next turn between left (-1) and right (1)
    *  If the next turn is set to straight (0), then it will stay straight

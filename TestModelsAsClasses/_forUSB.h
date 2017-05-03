@@ -4,7 +4,7 @@
 /**
  * DISCLAIMER:
  * This code was not initially writen or majorly editted by the Rose-Hulman 2016-2017 ADEV Automation Navigation team
- * The code was supplied by an open source project
+ * The code is owned by the contributers to the GitHub repository, https://github.com/felis/USB_Host_Sheild_2.0
  */
 
 // Libraries for the USB

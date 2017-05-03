@@ -47,6 +47,7 @@ void Picking::turning(){
   //If in a row, toggle next turning, switch state to going straight
   if (robotInRow()){
     Turning::toggleNext();
+    Turning::rows_picked += 1;
     currState = State::STRAIGHT;
   }
 };
