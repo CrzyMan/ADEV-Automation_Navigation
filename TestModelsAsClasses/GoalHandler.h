@@ -11,13 +11,12 @@ namespace GoalHandler {
   const int left = -1;
   const int right = 1;
   const int straight = 0;
-
   
-
   // Indices for the biases array
   const char _biases_lateral = 0;
   const char _biases_rotational = 1;
   const char _biases_speed = 2;
+  
   // biases = [_biases_lateral, _biases_rotational, _biases_speed]
   // lateral bias > 0 = turn to the left
   // rotational bias > 0 = turn to the right
@@ -49,7 +48,9 @@ namespace GoalHandler {
     return 2.0/(1.0 + exp(-k*x)) - 1.0;
   }
 
-  // Takes in the readings and biases and Updates the biases based on the readings
+  /*
+   * Takes in the readings and biases and Updates the biases based on the readings
+   */
   void updateBiases(){
     // Turn the readings into biases
   
@@ -69,14 +70,14 @@ namespace GoalHandler {
                                + readings[_readings_rightSideBack]*(currDir != left)*0 // ignore when turning left
                                + fuzzyGoals[_fuzzy_sideBack]*(-currDir)*0; // ignore when going straight
 
-  
     // Speed bias from the forward reading
     biases[_biases_speed] = readings[_readings_front] - fuzzyGoals[_fuzzy_front];
 
   };
-
   
-  // Takes in the readings and the goals and Updates the goals according to the readings
+  /*
+   * Takes in the readings and the goals and Updates the goals according to the readings
+   */
   void updateGoals(){
     // get the new biases
     updateBiases();
@@ -91,9 +92,11 @@ namespace GoalHandler {
     goals[_goals_turningSpeed] = balancedLogistic(biases[_biases_lateral] + biases[_biases_rotational],latK);
     goals[_goals_forwardSpeed] = balancedLogistic(biases[_biases_speed], speedK);
     goals[_goals_forwardSpeed] = goals[_goals_forwardSpeed] < 0 ? 0 : goals[_goals_forwardSpeed];
-  
   };
 
+  /*
+   * Sets currDir to the new direction passed to the function
+   */
   void setDirection(int newDir){
     currDir = newDir;
   }
