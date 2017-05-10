@@ -6,22 +6,24 @@
 
 // The class to be instantiated later
 // Extends Movement Module
-class Idle : public MovementModule {
-  public:
-    void execute();
-};
-
+//class Idle : public MovementModule {
+//  public:
+//    void execute();
+//};
+//
 /*
  * Robot stays still
  */
-void Idle::execute() {
-  // Don't turn
-  goals[_goals_turningSpeed] = 0.0;
-
-  // Don't move forward
-  goals[_goals_forwardSpeed] = 0.0;
-
-  //Send out a message for dire circumstances (dead battery, can't move,...)
+namespace Idle {
+    void execute(){
+      // Don't turn
+      goals[_goals_turningSpeed] = 0.0;
+    
+      // Don't move forward
+      goals[_goals_forwardSpeed] = 0.0;
+    
+      //Send out a message for dire circumstances (dead battery, can't move,...)
+    }; // execute
 };
 
 #endif // IDLE_H

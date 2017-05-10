@@ -5,7 +5,7 @@ void pickModule(){
   updateEnvironmentFlags();
 
   // Set module to default, Picking, will change if needed
-  m = &p;
+  m = Picking::execute;
   
   // If a flag has been set, then make decisions
   if(FlagProtocol::getFlag(FlagProtocol::FlagNames::flagsActive)){
@@ -14,13 +14,13 @@ void pickModule(){
       if (FlagProtocol::getFlag(FlagProtocol::FlagNames::armBusy) ||
           FlagProtocol::getFlag(FlagProtocol::FlagNames::batteryDead) ||
           FlagProtocol::getFlag(FlagProtocol::FlagNames::obstacleWhileTurning)){
-          m = &i;
+          m = Idle::execute;
       }
       // GoHome: Battery low, basket full, goHome request
       else if (FlagProtocol::getFlag(FlagProtocol::FlagNames::basketFull) ||
           FlagProtocol::getFlag(FlagProtocol::FlagNames::batteryLow) ||
           FlagProtocol::getFlag(FlagProtocol::FlagNames::goHomeRequest)){
-          m = &g;
+          m = GoHome::execute;
        }
        // Add additional else if statements if other states arise.
   }
@@ -35,6 +35,6 @@ void runModule(){
 
   // Gives the module the opportunity to directly edit the goals (idle/demo)
   // Otherwise, timescale is so small, the output will seem to happen at the same time as the decision, even though it is an iteration behind
-  m->execute();
+  (*m)();
 }
 

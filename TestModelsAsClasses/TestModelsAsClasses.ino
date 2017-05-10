@@ -1,6 +1,57 @@
+/*
+#include <iostream>
+#include <string>
+
+int direction = 0;
+
+int pos = 0;
+
+void (*f)();
+
+void move(){
+    pos += direction;
+}
+
+void setDirection(int dir){
+    direction = dir;
+}
+
+void forwards(){
+    setDirection(1);
+}
+
+void backwards(){
+    setDirection(-1);
+}
+
+void runModule(){
+    (*f)();
+}
+
+int main()
+{
+    f = forwards;
+    
+    std::cout << "Pos = " << pos << "\n";
+    
+    runModule();
+    move();
+    
+    std::cout << "Pos = " << pos << "\n";
+    
+    f = backwards;
+    runModule();
+    move();
+    
+    std::cout << "Pos = " << pos << "\n";
+    
+}
+
+ */
+
 // Can test everything on http://cpp.sh/
 
-// Get everything included in Common.h
+// Get the common stuff
 #include "Common.h"
 
 
@@ -15,49 +66,46 @@
 #include "Demo.h"
 
 // Set the MovementModel to be filled later
-MovementModule *m;
+//MovementModule *m;
+void (*m)();
 
 // Produce the types of MovementModels we want to use
-GoHome g;
-Picking p;
-Idle i;
-Demo d;
+//GoHome g;
+//Picking p;
+//Idle i;
+//Demo d;
 /** End Movement Logic **/
 
-/*
- * Called once at the very beginning, used to set up everything (Serial, motors and USB).
- */
+
 void setup(){
   // Setup Serial
   Serial.begin( 115200 );
-  
-  // Can wait at this point for GUI input
+  //While not ready, do nothing
 
   // Setup motors
   motorSetup();
 
-  // Set default movement module to idle
-  m = &i;
-  // Insure robot does not move on start up
+  // Setup USB
+  USBSetup();
+
+  // Wait to start for some reason
+  //while (Pin low or something){}
+  
+  //Set default movement module to idle
+  m = Idle::execute;
   runModule();
   controlMotors();
-  
-  // Setup USB
-  // This takes time to perform which is why we first insured the robot won't move
-  USBSetup();
 }
 
-/*
- * Called by a infinite loop. Updates LIDAR data, picks the movement module
- * to use, runs that module, and controls the motors as appropriate.
- */
- void loop(){
+void loop(){
   // Update the lidar data
   updateLIDARData();
   
   // decide which movement module to use
   pickModule();
     // Called inside updateMovementLogic();
+    // Update flags caused by environment
+    // updateEnvironmentFlags();
   
   // Run the movement module
   runModule();
