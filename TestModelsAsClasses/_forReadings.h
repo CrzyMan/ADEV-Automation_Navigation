@@ -74,8 +74,9 @@ const int inRowThreshold = 2000;
  * Returns whether or not the robot is in a row
  */
 bool robotInRow(){
-  return (readings[_readings_rightSideFront] <= inRowThreshold &&
-          readings[_readings_leftSideFront ] <= inRowThreshold);
+  //Changed from rightsidefront to rightside
+  return (readings[_readings_rightSide] <= inRowThreshold &&
+          readings[_readings_leftSide ] <= inRowThreshold);
 }
 
 #endif // _FORREADINGSH

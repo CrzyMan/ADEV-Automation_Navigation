@@ -26,6 +26,6 @@ const float MAX_ROTATIONAL_SPEED = 10; // rot/s
 
 // This value is used to control the turning
 // The bigger the value, the harder it turns
-const float HALF_TANK_WIDTH = 0.5; //m
+const float HALF_TANK_WIDTH = 0.55;//0.5; //m
 
 #endif // _FORMOTORCONTROLH
